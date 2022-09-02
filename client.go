@@ -17,6 +17,7 @@ import (
 	"github.com/kaifei-bianjie/msg-parser/modules/nft"
 	"github.com/kaifei-bianjie/msg-parser/modules/oracle"
 	"github.com/kaifei-bianjie/msg-parser/modules/params"
+	"github.com/kaifei-bianjie/msg-parser/modules/perm"
 	"github.com/kaifei-bianjie/msg-parser/modules/random"
 	"github.com/kaifei-bianjie/msg-parser/modules/record"
 	"github.com/kaifei-bianjie/msg-parser/modules/service"
@@ -51,7 +52,8 @@ type MsgClient struct {
 	Tibc         tibc.Client
 	Identity     identity.Client
 	//Wasm         wasm.Client
-	Evm evm.Client
+	Evm  evm.Client
+	Perm perm.Client
 }
 
 func NewMsgClient() MsgClient {
@@ -80,6 +82,7 @@ func NewMsgClient() MsgClient {
 		Tibc:         tibc.NewClient(),
 		Identity:     identity.NewClient(),
 		//Wasm:         wasm.NewClient(),
-		Evm: evm.NewClient(),
+		Evm:  evm.NewClient(),
+		Perm: perm.NewClient(),
 	}
 }
