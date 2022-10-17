@@ -9,6 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth/signing"
 	"github.com/cosmos/cosmos-sdk/x/auth/tx"
+	tmjson "github.com/tendermint/tendermint/libs/json"
+	pc "github.com/tendermint/tendermint/proto/tendermint/crypto"
 	"github.com/tendermint/tendermint/types"
 	recordtypes "gitlab.bianjie.ai/cschain/cschain/modules/ibc/applications/record/types"
 	bcos "gitlab.bianjie.ai/cschain/cschain/modules/ibc/light-clients/bcos/types"
@@ -27,6 +29,7 @@ var (
 func MakeEncodingConfig() {
 	amino := codec.NewLegacyAmino()
 	interfaceRegistry := ctypes.NewInterfaceRegistry()
+	tmjson.RegisterType((*pc.PublicKey_Sm2)(nil), "tendermint.crypto.PublicKey_Sm2")
 	brochain.RegisterInterfaces(interfaceRegistry)
 	fabric.RegisterInterfaces(interfaceRegistry)
 	tendermint.RegisterInterfaces(interfaceRegistry)
